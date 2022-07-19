@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="contract_info_form_view" model="ir.ui.view">
+        <field name="name">contract.info.form.view</field>
+        <field name="model">contract.project</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="change_contract" string="Change" type="object" class="btn-primary"/>
+                    <field name="vcon_contract_project_state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group class="col-lg-6">
+                            <label for="vcon_dpr_project_name" style="width:200px"/>
+                            <field name="vcon_dpr_project_name" nolabel="1"/>
+                            <label for="vcon_dpr_project_no"/>
+                            <field name="vcon_dpr_project_no" nolabel="1"/>
+                            <label for="vcon_issuing_contractor"/>
+                            <field name="vcon_issuing_contractor" nolabel="1"/>
+                            <label for="vcon_issuing_contractor_signatory"/>
+                            <field name="vcon_issuing_contractor_signatory" nolabel="1"/>
+                        </group>
+                        <group class="col-lg-6">
+                            <label for="vcon_dpr_phase_code_vdc" style="width:200px"/>
+                            <field name="vcon_dpr_phase_code_vdc" nolabel="1"/>
+                            <label for="vcon_dpr_phase_code_pcm"/>
+                            <field name="vcon_dpr_phase_code_pcm" nolabel="1"/>
+                            <label for="vcon_dpr_phase_code_asp"/>
+                            <field name="vcon_dpr_phase_code_asp" nolabel="1"/>
+                            <label for="vcon_customer_contract_signatory"/>
+                            <field name="vcon_customer_contract_signatory" nolabel="1"/>
+                        </group>
+                        <group class="col-lg-6">
+                            <label for="vcon_project_no" style="width:200px"/>
+                            <field name="vcon_project_no" nolabel="1"/>
+                            <label for="vcon_project_name"/>
+                            <field name="vcon_project_name" nolabel="1"/>
+                            <label for="vcon_msa"/>
+                            <field name="vcon_msa" nolabel="1"/>
+                            <label for="vcon_vendor"/>
+                            <field name="vcon_vendor" nolabel="1"/>
+                            <label for="vcon_scope"/>
+                            <field name="vcon_scope" nolabel="1"/>
+                        </group>
+                        <group class="col-lg-6">
+                            <label for="vcon_confirmed_contract_type" style="width:200px"/>
+                            <field name="vcon_confirmed_contract_type" nolabel="1"/>
+                            <label for="vcon_contract_signatory"/>
+                            <field name="vcon_contract_signatory" nolabel="1"/>
+                            <label for="vcon_requestor"/>
+                            <field name="vcon_requestor" nolabel="1"/>
+                            <label for="vcon_customer_contract_signatory"/>
+                            <field name="vcon_customer_contract_signatory" nolabel="1"/>
+                            <label for="vcon_date_service_start"/>
+                            <field name="vcon_date_service_start" nolabel="1"/>
+                        </group>
+                    </group>
+                    <br/><br/><br/>
+                    <label for="vcon_contract_deta_desc"/>
+                    <field name="vcon_contract_deta_desc"/>
+                    <notebook>
+                        <page name="contract_amount" string="CONTRACT AMOUNT">
+                            <field name="vcon_contract_amount_ids">
+                                <tree editable="bottom">
+                                    <field name="vcon_ca_description"/>
+                                    <field name="vcon_ca_service_type"/>
+                                    <field name="vcon_ca_compensation_type"/>
+                                    <field name="vcon_ca_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="alternate" string="ALTERNATE">
+                            <field name="vcon_contract_alternate_ids">
+                                <tree editable="bottom">
+                                    <field name="vcon_cal_description"/>
+                                    <field name="vcon_cal_add_deduct"/>
+                                    <field name="vcon_cal_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="billing_rates" string="BILLING RATES FOR SERVICES TO BE PROVIDED">
+                            <field name="vcon_contract_billing_rates_ids">
+                                <tree editable="bottom">
+                                    <field name="vcon_contract_category_id"/>
+                                    <field name="vcon_contract_hourly_rate"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="unit_rates" string="UNIT RATES">
+                            <field name="vcon_contract_unit_rates_ids">
+                                <tree editable="bottom">
+                                    <field name="vcon_contract_unit"/>
+                                    <field name="vcon_contract_unit_desc"/>
+                                    <field name="vcon_contract_unit_rate"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="scope_of_work" string="LOWER TIER SUBCONTRACTORS">
+                            <field name="vcon_contract_scope_work_ids">
+                                <tree editable="bottom">
+                                    <field name="vcon_contract_csw_com_name"/>
+                                    <field name="vcon_contract_csw_contact"/>
+                                    <field name="vcon_contract_csw_phone"/>
+                                    <field name="vcon_contract_csw_scope_of_work"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="inclusion" string="INCLUSIONS">
+                            <field name="vcon_contract_inclusions_ids">
+                                <tree editable="bottom">
+                                    <field name="vcon_contract_ci_desc"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="exclusion" string="EXCLUSIONS">
+                            <field name="vcon_contract_exclusions_ids">
+                                <tree editable="bottom">
+                                    <field name="vcon_contract_ce_desc"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+<!--                    <label for="vcon_contract_reimbursable_expenses"/>-->
+<!--                    <field name="vcon_contract_reimbursable_expenses"/>-->
+<!--                    <label for="vcon_customer_acceptance_process"/>-->
+<!--                    <field name="vcon_customer_acceptance_process"/>-->
+<!--                    <label for="vcon_prime_contract_clauses"/>-->
+<!--                    <field name="vcon_prime_contract_clauses"/>-->
+<!--                    <label for="vcon_additional_insured_parties"/>-->
+<!--                    <field name="vcon_additional_insured_parties"/>-->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="contract_info_tree_view" model="ir.ui.view">
+        <field name="name">contract.info.tree.view</field>
+        <field name="model">contract.project</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="vcon_dpr_project_no"/>
+                <field name="vcon_dpr_project_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="contract_project_action_view" model="ir.actions.act_window">
+        <field name="name">DPR</field>
+        <field name="res_model">contract.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="contract_customer_bu_action_view" model="ir.actions.act_window">
+        <field name="name">Internal</field>
+        <field name="res_model">customer.bu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="out_parent_company_action_view" model="ir.actions.act_window">
+        <field name="name">Non DPR</field>
+        <field name="res_model">non.dpr</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="contract_project_root"
+              name="Contracts"
+              sequence="1"
+    />
+
+    <menuitem
+            id="contract_main_menu"
+            parent="contract.contract_project_root"
+            action="contract_project_action_view"
+            name="Contracts"
+            sequence="0"/>
+    <menuitem
+            id="contract_project"
+            action="contract_project_action_view"
+            parent="contract.contract_main_menu"
+            name="DPR"
+            sequence="1"/>
+    <menuitem
+            id="contract_customer_bu"
+            action="contract_customer_bu_action_view"
+            parent="contract.contract_main_menu"
+            name="Internal"
+            sequence="2"/>
+    <menuitem
+            id="contract_out_parent_company"
+            action="out_parent_company_action_view"
+            parent="contract.contract_main_menu"
+            name="Non DPR"
+            sequence="3"/>
+
+
+</odoo>

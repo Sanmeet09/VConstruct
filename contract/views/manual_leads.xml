@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record id="manual_leads_form_view" model="ir.ui.view">
+            <field name="name">manual.leads.form.view</field>
+            <field name="model">manual.leads</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="manual_leads_tree_view" model="ir.ui.view">
+            <field name="name">manual.leads.tree.view</field>
+            <field name="model">manual.leads</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <button name="data_pass" type="object" class="btn btn-primary fa fa-plus-square-o"/>
+                </tree>
+            </field>
+        </record>
+        <record id="crm_action_view_menuitem" model="ir.actions.act_window">
+            <field name="name">Manual Leads</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">manual.leads</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create a new sellable product</p>
+            </field>
+        </record>
+        <menuitem id="menu_new_crm_menuitem" parent="crm.crm_menu_config" name="Manual Leads"
+                  action="crm_action_view_menuitem"/>
+    </data>
+</odoo>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="non_dpr_form_view" model="ir.ui.view">
+        <field name="name">non.dpr.form.view</field>
+        <field name="model">non.dpr</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group class="col-md-4">
+                            <label for="vconstruct_project_name" style="width:165px;"/>
+                            <field name="vconstruct_project_name" nolabel="1"/>
+
+                            <label for="contract_type"/>
+                            <field name="contract_type" nolabel="1"/>
+
+                            <label for="conf_cont_val"/>
+                            <field name="conf_cont_val" nolabel="1"/>
+
+                            <label for="cont_amt_word"/>
+                            <field name="cont_amt_word" nolabel="1"/>
+
+                            <label for="dpr_unt"/>
+                            <field name="dpr_unt" nolabel="1"/>
+                        </group>
+                        <group class="col-md-4">
+                            <label for="cust_addr"/>
+                            <field name="cust_addr" nolabel="1"/>
+
+                            <label for="cont_ef_date"/>
+                            <field name="cont_ef_date" nolabel="1"/>
+
+                            <label for="vconstruct_cont_sign" style="width:180px;"/>
+                            <field name="vconstruct_cont_sign" nolabel="1"/>
+
+                            <label for="cust_cont_sign"/>
+                            <field name="cust_cont_sign" nolabel="1"/>
+                        </group>
+                        <group class="col-md-4">
+                            <label for="scope_of_work" style="width:165px;"/>
+                            <field name="scope_of_work" nolabel="1"/>
+
+                            <label for="vconstruct_project_name"/>
+                            <field name="input_req" nolabel="1"/>
+
+                            <label for="assmp_made"/>
+                            <field name="assmp_made" nolabel="1"/>
+
+                            <label for="public_holiday_list"/>
+                            <field name="public_holiday_list" nolabel="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <spam style="color:#7d435d; font-size:18px; font-weight:bold">Bank Details</spam>
+                        <br/>
+                        <group>
+                            <field name="bank_name"/>
+                            <field name="bank_addr"/>
+                            <field name="account_name"/>
+                            <field name="aba_routing"/>
+                        </group>
+                        <group>
+                            <field name="bank_account"/>
+                            <field name="bank_cont_name"/>
+                            <field name="tel_num"/>
+                        </group>
+                    </group>
+                    <br/>
+                    <label for="detail_desc_vconst"/>
+                    <br/>
+                    <field name="detail_desc_vconst" nolabel="1"/>
+                    <br/>
+                    <notebook>
+                        <page string="Unit Rate">
+                            <field name="unit_rate_id">
+                                <tree editable="bottom">
+                                    <field name="unit_rate_unit" style="width:10%"/>
+                                    <field name="unit_rate_description"/>
+                                    <field name="unit_rate_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Inclusions Description">
+                            <field name="inc_desc_id">
+                                <tree editable="bottom">
+                                    <field name="inc_desc"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Exclusions Description">
+                            <field name="esc_desc_id">
+                                <tree editable="bottom">
+                                    <field name="esc_desc"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Cost Breakdown">
+                            <field name="cost_break_id">
+                                <tree editable="bottom">
+                                    <field name="sr_no" style="width:10%"/>
+                                    <field name="scope_desc"/>
+                                    <field name="vconstruct_service_type"/>
+                                    <field name="comp_type"/>
+                                    <field name="cost_value" style="width:10%"/>
+                                    <field name="conf_cont_val_total_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="non_dpr_tree_view" model="ir.ui.view">
+        <field name="name">non.dpr.tree.view</field>
+        <field name="model">non.dpr</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="vconstruct_project_name"/>
+                <field name="contract_type"/>
+                <field name="conf_cont_val"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

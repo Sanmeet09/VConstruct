@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="inherited_crm_lead_view" model="ir.ui.view">
+        <field name="name">inherited.crm.lead.view</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <!--  Create Project button on the header -->
+            <xpath expr="//form/header" position="inside">
+                <button class="oe_highlight" string="Create Project" type="object" name="create_project"/>
+            </xpath>
+            <!--     code for smart button -->
+            <xpath expr="//form/sheet/div[@name='button_box']" position="inside">
+                <button name="view_project" type="object" class="oe_stat_button" icon="fa-list-alt">
+                    <div class="o_stat_info">
+                        <field name="project_count" class="o_stat_value"/>
+                        <span class="o_stat_text">Project</span>
+                    </div>
+                </button>
+            </xpath>
+            <!-- vc_uid on top of opportunity -->
+            <xpath expr="//form/sheet/div[2]" position="before">
+                <label for="u_id"/>
+                <field name="u_id" nolabel="1"/>
+            </xpath>
+            <!-- fields after the opportunity -->
+            <xpath expr="//group[@name='opportunity_partner']/field[@name='partner_id']" position="after">
+                <!--  seperator of Project Information -->
+                <separator string="Project Information" style="font-size:15px;color:#000000"/>
+                <field name="cmic_project"/>
+                <field name="cmic_project_no"/>
+                <field name="opp_name"/>
+                <field name="opp_no"/>
+                <!-- seperator of Customer Information -->
+                <separator string="Customer Information" style="font-size:15px;color:#000000"/>
+                <field name="partner_id"/>
+                <field name="custom_gp" string="Customer Group"/>
+                <field name="sub_gp"/>
+                <field name="custom_addr" string="Customer Address"/>
+                <field name="custom_op"/>
+                <field name="custom_job_co"/>
+                <field name="ssg"/>
+                <field name="billable_currency"/>
+                <field name="project_id"/>
+            </xpath>
+            <!--  changed the name from SalesPerson to vConstruct POC -->
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="string">vConstruct POC</attribute>
+            </xpath>
+            <!-- fields before Expected Closing -->
+            <xpath expr="//form/sheet//group/field[@name='date_deadline']" position="before">
+                <field name="total_conf_value"/>
+                <separator string="Other Information" style="font-size:15px;color:#000000"/>
+                <field name="project_name"/>
+                <label for="sez_unit" style="width:182px;"/>
+                <field name="sez_unit" nolabel="1"/>
+                <field name="action_item"/>
+                <field name="action_due_date"/>
+                <field name="award"/>
+            </xpath>
+            <!-- api button -->
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <label for="api_fields"/>
+                <div class="o_row">
+                    <field name="api_fields"/>
+                    <button name="get_lead_name" type="object" class="btn btn-primary fa fa-plus-square-o"
+                            title="Click to Pass the data" role="img"/>
+                </div>
+            </xpath>
+            <!-- invisible the team_id field -->
+            <xpath expr="//sheet//group/field[@name='team_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Line Item order_line -->
+            <xpath expr="//form/sheet/notebook/page[@name='internal_notes']" position="before">
+                <page name="Scope Information" string="Scope Information">
+                    <field name="order_line" widget="section_and_note_one2many">
+                        <tree>
+                            <control>
+                                <create name="add_product_control" string="Add a product"/>
+                                <create name="add_section_control" string="Add a section"
+                                        context="{'default_display_type': 'line_section'}"/>
+                                <create name="add_note_control" string="Add a note"
+                                        context="{'default_display_type': 'line_note'}"/>
+                                <button name="open_order_line" string="Create Child" type="object"/>
+                            </control>
+                            <field name="sequence" widget="handle"/>
+                            <field name="display_type" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="order_id" optional="hide" required="0" invisible="1"/>
+                            <field name="product_id" string="Scope"/>
+                            <field name="product_uom_category_id" invisible="1"/>
+                            <field name="product_uom" invisible="1"/>
+                            <field name="lead_id"/>
+                            <field name="name"/>
+                            <field name="product_uom_qty"/>
+                            <field name="qty_delivered"/>
+                            <field name="qty_invoiced"/>
+                            <field name="price_unit" attrs="{'readonly': [('qty_invoiced', '>', 0)]}"/>
+                            <field name="tax_id" widget="many2many_tags"/>
+                            <field name="stage"/>
+                            <field name="price_subtotal"/>
+                            <field name="project_id" optional="hide"/>
+                            <field name="parent_opp" optional="hide"/>
+                            <field name="business_unit" optional="hide"/>
+                            <field name="vc_poc" optional="hide"/>
+                            <field name="service" optional="hide"/>
+                            <field name="conf_cont_type" string="Confirm Contract Type" optional="hide"/>
+                            <field name="conf_cont_val" optional="hide"/>
+                            <field name="cust_poc" optional="hide"/>
+                            <field name="pr_submit_date" optional="hide"/>
+                            <field name="awarded_date" optional="hide"/>
+                            <field name="start_date" optional="hide"/>
+                            <field name="end_date" optional="hide"/>
+                            <field name="drp" optional="hide"/>
+                            <field name="price_list" optional="hide"/>
+                            <field name="work_req" optional="hide"/>
+                            <field name="unique_key" optional="hide"/>
+                            <field name="comp" optional="hide"/>
+                            <button name="open_order_line" string="Create Child" type="object"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="stage"/>
+                                    <field name="lead_id" invisible="1"/>
+                                    <field name="sequence" widget="handle" invisible="1"/>
+                                    <field name="display_type" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="order_id" required="0" invisible="1"/>
+                                    <separator string="Scope Information" style="font-size:15px;color:#000000"/>
+                                    <field name="product_id" string="Scope"/>
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                    <field name="product_uom" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="business_unit"/>
+                                    <field name="vc_poc"/>
+                                    <field name="cust_poc"/>
+                                    <field name="service"/>
+                                    <separator string="Schedule Information" style="font-size:15px;color:#000000"/>
+                                    <field name="awarded_date"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                </group>
+                                <group>
+                                    <separator string="Budget Information" style="font-size:15px;color:#000000"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="qty_delivered"/>
+                                    <field name="qty_invoiced"/>
+                                    <field name="price_unit" attrs="{'readonly': [('qty_invoiced', '>', 0)]}"/>
+                                    <field name="conf_cont_type" string="Confirm Contract Type" optional="hide"/>
+                                    <field name="drp"/>
+                                    <label for="conf_cont_val" style="width:178px"/>
+                                    <field name="conf_cont_val" nolabel="1"/>
+                                    <separator string="Jira" style="font-size:15px;color:#000000"/>
+                                    <field name="unique_key"/>
+                                    <field name="comp"/>
+                                </group>
+                            </group>
+                            <notebook>
+                                <page string="Child Lines">
+                                    <field name="order_line_ids"
+                                           context="{'default_order_id': context.get('order_id')}">
+                                        <tree editable="bottom" context="{'default_order_id': context.get('order_id')}">
+                                            <control>
+                                                <create name="add_product_control" string="Add a product"
+                                                        context="{'default_order_id': context.get('order_id')}"/>
+                                                <create name="add_section_control" string="Add a section"
+                                                        context="{'default_display_type': 'line_section'}"/>
+                                                <create name="add_note_control" string="Add a note"
+                                                        context="{'default_display_type': 'line_note'}"/>
+                                            </control>
+                                            <field name="lead_id" invisible="1"/>
+                                            <field name="sequence" widget="handle"/>
+                                            <field name="display_type" invisible="1"/>
+                                            <field name="company_id" invisible="1"/>
+                                            <field name="order_id" optional="hide"/>
+                                            <field name="product_id"/>
+                                            <field name="product_uom_category_id" invisible="1"/>
+                                            <field name="product_uom" invisible="1"/>
+                                            <field name="name"/>
+                                            <field name="product_uom_qty"/>
+                                            <field name="qty_delivered"/>
+                                            <field name="qty_invoiced"/>
+                                            <field name="price_unit" attrs="{'readonly': [('qty_invoiced', '>', 0)]}"/>
+                                            <field name="tax_id" widget="many2many_tags"/>
+                                            <field name="price_subtotal"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Invoice Lines">
+                                    <field name="invoice_lines">
+                                        <tree>
+                                            <field name="date"/>
+                                            <field name="move_id"/>
+                                            <field name="account_id"/>
+                                            <field name="name"/>
+                                            <field name="amount_currency"/>
+                                            <field name="debit"/>
+                                            <field name="credit"/>
+                                            <field name="matching_number"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </form>
+                    </field>
+                </page>
+                <page string="Child/Sub Opportunities">
+                    <field name="crm_ids">
+                        <form>
+                            <group>
+                                <field name="create_crm_date"/>
+                                <field name="opportunity_crm"/>
+                                <field name="partner_id"/>
+                                <field name="country_id"/>
+                                <field name="team_id"/>
+                                <field name="total_revenue_crm"/>
+                            </group>
+                        </form>
+                        <tree>
+                            <field name="create_crm_date"/>
+                            <field name="opportunity_crm"/>
+                            <field name="partner_id"/>
+                            <field name="country_id"/>
+                            <field name="team_id"/>
+                            <field name="total_revenue_crm"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Cosential">
+                    <form>
+                        <group>
+                            <group>
+                                <field name="custom_job_co"/>
+                                <field name="project_name"/>
+                                <field name="sub_gp"/>
+                                <field name="custom_op"/>
+                                <field name="ssg"/>
+                                <field name="crm_project_number"/>
+                                <field name="crm_dpr_region"/>
+                            </group>
+                            <group>
+                                <label for="crm_dpr_business" style="width:158px;"/>
+                                <field name="crm_dpr_business" nolabel="1"/>
+                                <field name="crm_preconstruction"/>
+                                <field name="crm_preconstruction_end"/>
+                                <field name="crm_construction_start"/>
+                                <field name="crm_construction_end"/>
+                                <field name="crm_project_volume"/>
+                                <field name="crm_core_market"/>
+                            </group>
+                        </group>
+                    </form>
+                </page>
+                <page string="Jira">
+                    <group>
+                        <field name="unique_key"/>
+                        <field name="comp"/>
+                    </group>
+                </page>
+                <page string="Azure"></page>
+            </xpath>
+            <!--  for invisible Extra Information notebook page  -->
+            <xpath expr="//form/sheet/notebook/page[@name='lead']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!--     to remove customer -->
+            <xpath expr="//form/sheet/group/group[@name='opportunity_partner']/field[@name='partner_id']"
+                   position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

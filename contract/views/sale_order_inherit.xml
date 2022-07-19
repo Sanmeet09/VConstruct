@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <!--    button on sale order 'Request Change Order'-->
+    <record id="sale_order_button" model="ir.ui.view">
+        <field name="name">sale.order.button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+                <button class="oe_highlight" name="request_order" string="Request Change Order" type="object"/>
+            </xpath>
+            <!--            smart button to view project-->
+            <xpath expr="//form/sheet/div[@name='button_box']" position="inside">
+                <button name="view_project" type="object" class="oe_stat_button" icon="fa-list-alt">
+                    <div class="o_stat_info">
+                        <field name="count_project" class="o_stat_value"/>
+                        <span class="o_stat_text">Project</span>
+                    </div>
+                </button>
+            </xpath>
+            <!--view button xpath in sale_order_line-->
+            <xpath expr="//tree/field[@name='price_subtotal']" position="after">
+                <button name="open_order_line" string="View" type="object"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='product_id']" position="before">
+                <field name="change_order"/>
+            </xpath>
+
+            <xpath expr="//tree/field[@name='price_subtotal']" position="before">
+                <field name="invoice_date"/>
+                <field name="invoice_to_do"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!--    order line view in on view button-->
+    <record id="view_order_line" model="ir.ui.view">
+        <field name="name">view.order.line</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="create">0</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group" position="after">
+                <notebook>
+                    <page string="Child Lines">
+                        <field name="order_line_ids"
+                               context="{'default_order_id': context.get('order_id')}">
+                            <tree editable="bottom" context="{'default_order_id': context.get('order_id')}">
+                                <control>
+                                    <create name="add_product_control" string="Add a product"
+                                            context="{'default_order_id': context.get('order_id')}"/>
+                                    <create name="add_section_control" string="Add a section"
+                                            context="{'default_display_type': 'line_section'}"/>
+                                    <create name="add_note_control" string="Add a note"
+                                            context="{'default_display_type': 'line_note'}"/>
+                                </control>
+                                <field name="sequence" widget="handle"/>
+                                <field name="display_type" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="order_id" optional="hide"/>
+                                <field name="product_id"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <field name="product_uom" invisible="1"/>
+                                <field name="name"/>
+                                <field name="product_uom_qty"/>
+                                <field name="qty_delivered"/>
+                                <field name="qty_invoiced"/>
+                                <field name="price_unit" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                                <field name="tax_id" widget="many2many_tags"/>
+                                <field name="price_subtotal"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Invoice Lines">
+                        <field name="invoice_lines">
+                            <tree>
+                                <field name="date" create="0"/>
+                                <field name="move_id"/>
+                                <field name="account_id"/>
+                                <field name="name"/>
+                                <field name="amount_currency"/>
+                                <field name="debit"/>
+                                <field name="credit"/>
+                                <field name="matching_number"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+            <xpath expr="//sheet//group/field[@name='product_id']" position="attributes">
+                <attribute name="string">Scope</attribute>
+            </xpath>
+
+            <xpath expr="//sheet//group/field[@name='name']" position="attributes">
+                <attribute name="string">Scope Description</attribute>
+            </xpath>
+
+            <xpath expr="//sheet//group/field[@name='price_total']" position="attributes">
+                <attribute name="string">Total of Child SOW</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
