@@ -14,16 +14,16 @@ class CrmProject(models.Model):
     u_id = fields.Char(string="vConstruct UID")
     cmic_project = fields.Char('CMIC Project Name')
     cmic_project_no = fields.Char('CMIC Project Number')
-    opp_name = fields.Char('Opportunity Name')
-    opp_no = fields.Char('Opportunity Number')
+    opportunity_name = fields.Char('Opportunity Name')
+    opportunity_no = fields.Char('Opportunity Number')
 
     # Customer Information Fields
-    custom_gp = fields.Char(string="Customer Group")
+    customer_gp = fields.Char(string="Customer Group")
     sub_gp = fields.Char(string="Customer Sub-Group")
-    custom_addr = fields.Char(string="Customer Address")
-    custom_op = fields.Char(string="Customer Opportunity")
+    customer_addr = fields.Char(string="Customer Address")
+    customer_opportunity = fields.Char(string="Customer Opportunity")
     # custom_job_co = fields.Integer(string="Customer Job Code")
-    custom_job_code = fields.Char(string="Customer Job Code")
+    customer_job_code = fields.Char(string="Customer Job Code")
     ssg = fields.Char(string="SSG/Non SSG")
     billable_currency = fields.Char('Billable Currency')
     total_conf_value = fields.Char(string=" Total Confirm Contract Value")
@@ -34,18 +34,18 @@ class CrmProject(models.Model):
                                  ('2', '2')], string="vConstruct SEZ Unit")
     action_item = fields.Char('Action Items')
     action_due_date = fields.Char('Action Item Due Date')
-    award = fields.Date(string='Awarded Date')
+    award_date = fields.Date(string='Awarded Date')
 
     # API field
     api_fields = fields.Selection(selection=[('cosential', 'Cosential'), ('cmmic', 'CMMIC'), ('manual', 'Manual')],
                                   string="API Data")
 
     # Scope Information Notebook
-    busines_unit = fields.Char(string="vConstruct BU")
+    business_unit = fields.Char(string="vConstruct BU")
     # vc_poc = fields.Char(string="vConstruct POC", required=True)
     v_poc = fields.Char('vConstruct POC')
-    cust_poc = fields.Selection([('1', '1'),
-                                 ('2', '2')], string="Customer POC")
+    customer_poc = fields.Selection([('1', '1'),
+                                     ('2', '2')], string="Customer POC")
     service = fields.Char('Service Vertical')
     awarded_date = fields.Date('Awarded Date')
     start_date = fields.Date(string="Estimated Start Date")

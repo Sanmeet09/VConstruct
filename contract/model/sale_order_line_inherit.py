@@ -44,7 +44,6 @@ class SaleOrderLineInherit(models.Model):
     parent_opp = fields.Char('Parent Opportunity')
     # bu = fields.Selection([('1', '1'),
     #                                    ('2', '2')], string="vConstruct BU")
-    busines_unit = fields.Char(string="vConstruct BU")
 
     v_poc = fields.Char('vConstruct POC')
     service = fields.Char('Service Vertical')
@@ -62,12 +61,13 @@ class SaleOrderLineInherit(models.Model):
     work_req = fields.Char('Work Request')
     unique_key = fields.Char('Unique Key')
     comp = fields.Char('Component')
-    business_unit = fields.Selection([('1', '1'),
-                                      ('2', '2')], string="vConstruct BU")
+    business_unit = fields.Char('vConstruct BU')
+    # business_unit = fields.Selection([('1', '1'),
+    #                                   ('2', '2')], string="vConstruct BU")
     vc_poc = fields.Selection([('1', '1'),
                                ('2', '2')], string="vConstruct POC")
-    cust_poc = fields.Selection([('1', '1'),
-                                 ('2', '2')], string="Customer POC")
+    customer_poc = fields.Selection([('1', '1'),
+                                     ('2', '2')], string="Customer POC")
     awarded_date = fields.Date('Awarded Date')
     start_date = fields.Date(string="Estimated Start Date")
     end_date = fields.Date(string="Estimated End Date")

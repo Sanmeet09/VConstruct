@@ -29,16 +29,16 @@
                 <separator string="Project Information" style="font-size:15px;color:#000000"/>
                 <field name="cmic_project"/>
                 <field name="cmic_project_no"/>
-                <field name="opp_name"/>
-                <field name="opp_no"/>
+                <field name="opportunity_name"/>
+                <field name="opportunity_no"/>
                 <!-- seperator of Customer Information -->
                 <separator string="Customer Information" style="font-size:15px;color:#000000"/>
                 <field name="partner_id"/>
-                <field name="custom_gp" string="Customer Group"/>
+                <field name="customer_gp" string="Customer Group"/>
                 <field name="sub_gp"/>
-                <field name="custom_addr" string="Customer Address"/>
-                <field name="custom_op"/>
-                <field name="custom_job_code"/>
+                <field name="customer_addr" string="Customer Address"/>
+                <field name="customer_opportunity"/>
+                <field name="customer_job_code"/>
                 <field name="ssg"/>
                 <field name="billable_currency"/>
                 <field name="project_id"/>
@@ -56,7 +56,7 @@
                 <field name="sez_unit" nolabel="1"/>
                 <field name="action_item"/>
                 <field name="action_due_date"/>
-                <field name="award"/>
+                <field name="award_date"/>
             </xpath>
             <!-- api button -->
             <xpath expr="//field[@name='tag_ids']" position="after">
@@ -102,12 +102,12 @@
                             <field name="price_subtotal"/>
                             <field name="project_id" optional="hide"/>
                             <field name="parent_opp" optional="hide"/>
-                            <field name="busines_unit" optional="hide"/>
+                            <field name="business_unit" optional="hide"/>
                             <field name="v_poc" optional="hide"/>
                             <field name="service" optional="hide"/>
                             <field name="conf_type" string="Confirm Contract Type" optional="hide"/>
                             <field name="conf_cont_val" optional="hide"/>
-                            <field name="cust_poc" optional="hide"/>
+                            <field name="customer_poc" optional="hide"/>
                             <field name="pr_submit_date" optional="hide"/>
                             <field name="awarded_date" optional="hide"/>
                             <field name="start_date" optional="hide"/>
@@ -135,9 +135,9 @@
                                     <field name="product_uom_category_id" invisible="1"/>
                                     <field name="product_uom" invisible="1"/>
                                     <field name="name"/>
-                                    <field name="busines_unit"/>
+                                    <field name="business_unit"/>
                                     <field name="v_poc"/>
-                                    <field name="cust_poc"/>
+                                    <field name="customer_poc"/>
                                     <field name="service"/>
                                     <separator string="Schedule Information" style="font-size:15px;color:#000000"/>
                                     <field name="awarded_date"/>
@@ -234,10 +234,10 @@
                     <form>
                         <group>
                             <group>
-                                <field name="custom_job_code"/>
+                                <field name="customer_job_code"/>
                                 <field name="project_name"/>
                                 <field name="sub_gp"/>
-                                <field name="custom_op"/>
+                                <field name="customer_opportunity"/>
                                 <field name="ssg"/>
                                 <field name="crm_project_number"/>
                                 <field name="crm_dpr_region"/>
