@@ -22,8 +22,8 @@ class CrmProject(models.Model):
     sub_gp = fields.Char(string="Customer Sub-Group")
     custom_addr = fields.Char(string="Customer Address")
     custom_op = fields.Char(string="Customer Opportunity")
-    custom_job_co = fields.Selection([('1', '1'),
-                                      ('2', '2')], string="Customer Job Code")
+    # custom_job_co = fields.Integer(string="Customer Job Code")
+    custom_job_code = fields.Char(string="Customer Job Code")
     ssg = fields.Char(string="SSG/Non SSG")
     billable_currency = fields.Char('Billable Currency')
     total_conf_value = fields.Char(string=" Total Confirm Contract Value")
@@ -41,10 +41,9 @@ class CrmProject(models.Model):
                                   string="API Data")
 
     # Scope Information Notebook
-    business_unit = fields.Selection([('1', '1'),
-                                      ('2', '2')], string="vConstruct BU")
-    vc_poc = fields.Selection([('1', '1'),
-                               ('2', '2')], string="vConstruct POC")
+    busines_unit = fields.Char(string="vConstruct BU")
+    # vc_poc = fields.Char(string="vConstruct POC", required=True)
+    v_poc = fields.Char('vConstruct POC')
     cust_poc = fields.Selection([('1', '1'),
                                  ('2', '2')], string="Customer POC")
     service = fields.Char('Service Vertical')
@@ -55,8 +54,9 @@ class CrmProject(models.Model):
     price_list = fields.Char('PriceList ($/Hr)')
 
     # Budget Information inside order_line
-    conf_cont_type = fields.Selection([('1', '1'),
-                                       ('2', '2')], string="Confirm Contract Type")
+    # conf_cont_type = fields.Selection([('1', '1'),
+    #                                    ('2', '2')], string="Confirm Contract Type")
+    conf_type = fields.Char(string="Confirm Contract Type")
     drp = fields.Char(string='DPR Phase Code')
     conf_cont_value = fields.Char('Confirm Contract Value')
 

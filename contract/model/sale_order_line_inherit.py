@@ -39,12 +39,14 @@ class SaleOrderLineInherit(models.Model):
     order_line_ids = fields.One2many('sale.order.line', 'parent_order_line', copy=False)
     parent_order_line = fields.Many2one('sale.order.line', ondelete='cascade', copy=False)
     project_id = fields.Many2one('project.project', 'Project Id')
+    conf_type = fields.Char(string="Confirm Contract Type")
 
     parent_opp = fields.Char('Parent Opportunity')
-    bu = fields.Selection([('1', '1'),
-                                       ('2', '2')], string="vConstruct BU")
-    poc = fields.Selection([('1', '1'),
-                                        ('2', '2')], string="vConstruct POC")
+    # bu = fields.Selection([('1', '1'),
+    #                                    ('2', '2')], string="vConstruct BU")
+    busines_unit = fields.Char(string="vConstruct BU")
+
+    v_poc = fields.Char('vConstruct POC')
     service = fields.Char('Service Vertical')
     conf_cont_type = fields.Selection([('1', '1'),
                                        ('2', '2')], string="Confirm Contract Type")

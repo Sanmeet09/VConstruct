@@ -38,7 +38,7 @@
                 <field name="sub_gp"/>
                 <field name="custom_addr" string="Customer Address"/>
                 <field name="custom_op"/>
-                <field name="custom_job_co"/>
+                <field name="custom_job_code"/>
                 <field name="ssg"/>
                 <field name="billable_currency"/>
                 <field name="project_id"/>
@@ -102,10 +102,10 @@
                             <field name="price_subtotal"/>
                             <field name="project_id" optional="hide"/>
                             <field name="parent_opp" optional="hide"/>
-                            <field name="business_unit" optional="hide"/>
-                            <field name="vc_poc" optional="hide"/>
+                            <field name="busines_unit" optional="hide"/>
+                            <field name="v_poc" optional="hide"/>
                             <field name="service" optional="hide"/>
-                            <field name="conf_cont_type" string="Confirm Contract Type" optional="hide"/>
+                            <field name="conf_type" string="Confirm Contract Type" optional="hide"/>
                             <field name="conf_cont_val" optional="hide"/>
                             <field name="cust_poc" optional="hide"/>
                             <field name="pr_submit_date" optional="hide"/>
@@ -120,9 +120,11 @@
                             <button name="open_order_line" string="Create Child" type="object"/>
                         </tree>
                         <form>
+                            <header>
+                                <field name="stage" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}" />
+                            </header>
                             <group>
                                 <group>
-                                    <field name="stage"/>
                                     <field name="lead_id" invisible="1"/>
                                     <field name="sequence" widget="handle" invisible="1"/>
                                     <field name="display_type" invisible="1"/>
@@ -133,8 +135,8 @@
                                     <field name="product_uom_category_id" invisible="1"/>
                                     <field name="product_uom" invisible="1"/>
                                     <field name="name"/>
-                                    <field name="business_unit"/>
-                                    <field name="vc_poc"/>
+                                    <field name="busines_unit"/>
+                                    <field name="v_poc"/>
                                     <field name="cust_poc"/>
                                     <field name="service"/>
                                     <separator string="Schedule Information" style="font-size:15px;color:#000000"/>
@@ -148,7 +150,7 @@
                                     <field name="qty_delivered"/>
                                     <field name="qty_invoiced"/>
                                     <field name="price_unit" attrs="{'readonly': [('qty_invoiced', '>', 0)]}"/>
-                                    <field name="conf_cont_type" string="Confirm Contract Type" optional="hide"/>
+                                    <field name="conf_type" string="Confirm Contract Type" optional="hide"/>
                                     <field name="drp"/>
                                     <label for="conf_cont_val" style="width:178px"/>
                                     <field name="conf_cont_val" nolabel="1"/>
@@ -232,7 +234,7 @@
                     <form>
                         <group>
                             <group>
-                                <field name="custom_job_co"/>
+                                <field name="custom_job_code"/>
                                 <field name="project_name"/>
                                 <field name="sub_gp"/>
                                 <field name="custom_op"/>
