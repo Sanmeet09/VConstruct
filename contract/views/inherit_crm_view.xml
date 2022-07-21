@@ -105,7 +105,7 @@
                             <field name="business_unit" optional="hide"/>
                             <field name="v_poc" optional="hide"/>
                             <field name="service" optional="hide"/>
-                            <field name="conf_type" string="Confirm Contract Type" optional="hide"/>
+                            <field name="confirm_type" string="Confirm Contract Type" optional="hide"/>
                             <field name="conf_cont_val" optional="hide"/>
                             <field name="customer_poc" optional="hide"/>
                             <field name="pr_submit_date" optional="hide"/>
@@ -150,7 +150,7 @@
                                     <field name="qty_delivered"/>
                                     <field name="qty_invoiced"/>
                                     <field name="price_unit" attrs="{'readonly': [('qty_invoiced', '>', 0)]}"/>
-                                    <field name="conf_type" string="Confirm Contract Type" optional="hide"/>
+                                    <field name="confirm_type" string="Confirm Contract Type" optional="hide"/>
                                     <field name="drp"/>
                                     <label for="conf_cont_val" style="width:178px"/>
                                     <field name="conf_cont_val" nolabel="1"/>

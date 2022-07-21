@@ -39,35 +39,21 @@ class SaleOrderLineInherit(models.Model):
     order_line_ids = fields.One2many('sale.order.line', 'parent_order_line', copy=False)
     parent_order_line = fields.Many2one('sale.order.line', ondelete='cascade', copy=False)
     project_id = fields.Many2one('project.project', 'Project Id')
-    conf_type = fields.Char(string="Confirm Contract Type")
+    confirm_type = fields.Char(string="Confirm Contract Type")
 
     parent_opp = fields.Char('Parent Opportunity')
-    # bu = fields.Selection([('1', '1'),
-    #                                    ('2', '2')], string="vConstruct BU")
-
     v_poc = fields.Char('vConstruct POC')
     service = fields.Char('Service Vertical')
-    conf_cont_type = fields.Selection([('1', '1'),
-                                       ('2', '2')], string="Confirm Contract Type")
     conf_cont_val = fields.Char(string="Confirm Contract Value")
     customer_poc = fields.Selection([('1', '1'),
                                      ('2', '2')], string="Customer POC")
     pr_submit_date = fields.Date('Proposal Submitted Date')
-    award = fields.Date(string='Awarded Date')
-    est_s_date = fields.Date(string="Estimated Start Date")
-    est_e_date = fields.Date(string="Estimated End Date")
     drp = fields.Char(string='DPR Phase Code')
     price_list = fields.Char('PriceList ($/Hr)')
     work_req = fields.Char('Work Request')
     unique_key = fields.Char('Unique Key')
     comp = fields.Char('Component')
     business_unit = fields.Char('vConstruct BU')
-    # business_unit = fields.Selection([('1', '1'),
-    #                                   ('2', '2')], string="vConstruct BU")
-    vc_poc = fields.Selection([('1', '1'),
-                               ('2', '2')], string="vConstruct POC")
-    customer_poc = fields.Selection([('1', '1'),
-                                     ('2', '2')], string="Customer POC")
     awarded_date = fields.Date('Awarded Date')
     start_date = fields.Date(string="Estimated Start Date")
     end_date = fields.Date(string="Estimated End Date")
@@ -88,3 +74,4 @@ class SaleOrderLineInherit(models.Model):
             'target': 'new',
             'context': {'order_id': self.order_id.id}
         }
+

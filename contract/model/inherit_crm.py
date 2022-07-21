@@ -162,6 +162,7 @@ class CrmProject(models.Model):
     def write(self, vals):
         res = super(CrmProject, self).write(vals)
         sow = self.order_line.filtered(lambda rec: rec.stage == 'award' and not rec.order_id)
+        sow2 = self.order_line.filtered(lambda sup: sup.stage != 'award')
         if sow and not self.order_ids:
             order_id = self.env['sale.order'].create(
                 {'partner_id': self.partner_id.id,
