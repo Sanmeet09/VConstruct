@@ -8,7 +8,7 @@
     'description': """ """,
     'category': '',
     'website': 'https://www.odoo.com/app/',
-    'depends': ["base", "crm", "sale", "project"],
+    'depends': ["base", "crm", "sale", "project", 'mail', 'web'],
     'data': [
         'security/ir.model.access.csv',
         'wizards/crm_wizards.xml',
@@ -19,6 +19,7 @@
         'views/sale_order_inherit.xml',
         'views/project_project_inherit.xml',
         'views/manual_leads.xml',
+        'views/customer_sub_group.xml',
     ],
     'installable': True,
     'application': True,

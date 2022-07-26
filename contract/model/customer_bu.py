@@ -3,14 +3,15 @@ from odoo import fields, api, models, _
 
 class CustomerBU(models.Model):
     _name = 'customer.bu'
+    _inherit = 'mail.thread'
     _rec_name = 'vc_customer_project'
     _description = 'Details of all the CRM'
 
-    vc_customer_uid = fields.Char('vConstruct Project Number')
-    vc_customer_contract = fields.Char('vConstruct Contract ')
-    vc_customer_project = fields.Char('vConstruct Project Name')
-    vc_customer_work_auth = fields.Char('vConstruct Work Auth. No')
-    vc_customer_msa = fields.Char('vConstruct MSA No')
+    vc_customer_uid = fields.Char('vconstruct Project Number')
+    vc_customer_contract = fields.Char('vconstruct Contract ')
+    vc_customer_project = fields.Char('vconstruct Project Name')
+    vc_customer_work_auth = fields.Char('vconstruct Work Auth. No')
+    vc_customer_msa = fields.Char('vconstruct MSA No')
     vc_customer_msa_date = fields.Char('MSA Date')
     vc_contractor_name = fields.Char('Name')
     vc_customer_address = fields.Char('Customer Address')
@@ -18,7 +19,7 @@ class CustomerBU(models.Model):
     # consultant
     vc_cons_name = fields.Char('Name')
     vc_cons_address = fields.Char('Address')
-    vc_project = fields.Char('vConstruct Project')
+    vc_project = fields.Char('vconstruct Project')
 
     vc_customer_categories = fields.Char('Categories')
     vc_customer_contract_value_amount = fields.Char('Confirmed Contract Value / Amount')
@@ -27,7 +28,7 @@ class CustomerBU(models.Model):
     vc_customer_dpr_unit = fields.Char('DPR Unit/ Group/ Affiliate')
 
     vc_customer_effective_date = fields.Char('Contract Effective Date')
-    vc_contract_signatory = fields.Char('vConstruct Contract Signatory')
+    vc_contract_signatory = fields.Char('vconstruct Contract Signatory')
     customer_contract_signatory = fields.Char('Customer Contract Signatory')
     vc_customer_alt = fields.Char('ALT #')
     vc_alternate_desc = fields.Char('ALTERNATE.Description')

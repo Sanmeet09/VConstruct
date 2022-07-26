@@ -4,7 +4,7 @@ from odoo import models, fields, api, _
 class NonDpr(models.Model):
     _name = "non.dpr"
 
-    vconstruct_project_name = fields.Char(string="vConstruct Project Name")
+    vconstruct_project_name = fields.Char(string="vconstruct Project Name")
 
     contract_type = fields.Selection([('1', '1'),
                                       ('2', '2')], string="Contract Type")
@@ -14,7 +14,7 @@ class NonDpr(models.Model):
     dpr_unt = fields.Char(string="DPR Unit/ Group/ Affiliate")
     cust_addr = fields.Char(string="Customer Address")
     cont_ef_date = fields.Char(string="Contract Effective Date")
-    vconstruct_cont_sign = fields.Char(string="vConstruct Contract Signatory")
+    vconstruct_cont_sign = fields.Char(string="vconstruct Contract Signatory")
     cust_cont_sign = fields.Char(string="Customer Contract Signatory")
 
     # field for DETAILED DESCRIPTION OF VCONSTRUCT SERVICES
@@ -77,7 +77,7 @@ class CostBreakdown(models.Model):
     sr_no = fields.Integer(string='Sr. No.')
     scope_desc = fields.Text(string="Scope Description")
     vconstruct_service_type = fields.Selection([('1', '1'),
-                                                ('2', '2')], string="vConstruct Service type")
+                                                ('2', '2')], string="vconstruct Service type")
     comp_type = fields.Selection([('1', '1'),
                                   ('2', '2')], string="Compensation Type")
     cost_value = fields.Integer('Cost')

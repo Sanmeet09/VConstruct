@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <!--    form view-->
+    <record id="vc_customer_group_form_view" model="ir.ui.view">
+        <field name="name">vc.customer.group.form.view</field>
+        <field name="model">customer.sub.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="customer_sub"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    tree view-->
+    <record id="vc_customer_tree_view" model="ir.ui.view">
+        <field name="name">vc.customer.tree.view</field>
+        <field name="model">customer.sub.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_sub"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="contract_customer_group_action_view" model="ir.actions.act_window">
+        <field name="name">Sub Group</field>
+        <field name="res_model">customer.sub.group</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="menu_customer_group"
+              name="Sub Group"
+              parent="sale.menu_sale_config"
+              action="contract_customer_group_action_view"
+    />
+
+
+</odoo>

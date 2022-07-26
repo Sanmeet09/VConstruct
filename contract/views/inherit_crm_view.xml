@@ -43,7 +43,7 @@
                 <field name="billable_currency"/>
                 <field name="project_id"/>
             </xpath>
-            <!--  changed the name from SalesPerson to vConstruct POC -->
+            <!--  changed the name from SalesPerson to vconstruct POC -->
             <xpath expr="//field[@name='user_id']" position="attributes">
                 <attribute name="string">vConstruct POC</attribute>
             </xpath>
@@ -121,8 +121,13 @@
                         </tree>
                         <form>
                             <header>
-                                <field name="stage" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}" />
+                                <field name="stage" widget="statusbar"
+                                       options="{'clickable': '1', 'fold_field': 'fold'}"/>
                             </header>
+                            <div class="oe_chatter">
+                                <field name="message_follower_ids"/>
+                                <field name="message_ids"/>
+                            </div>
                             <group>
                                 <group>
                                     <field name="lead_id" invisible="1"/>
@@ -205,6 +210,10 @@
                                     </field>
                                 </page>
                             </notebook>
+                            <div class="oe_chatter" style="display:block;">
+                                <field name="message_follower_ids" widget="mail_followers"/>
+                                <field name="message_ids" widget="mail_thread" />
+                            </div>
                         </form>
                     </field>
                 </page>

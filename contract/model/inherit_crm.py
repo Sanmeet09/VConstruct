@@ -3,7 +3,10 @@ from odoo.exceptions import ValidationError, UserError
 
 
 class CrmProject(models.Model):
-    _inherit = "crm.lead"
+    _inherit = ["crm.lead"]
+
+    # channel_ids = fields.Many2many('mail.channel', 'mail_channel_profile_partner', 'partner_id', 'channel_id',
+    #                                copy=False)
 
     # All Relational Fields
     project_id = fields.Many2one('project.project', 'Project Id')
@@ -11,7 +14,7 @@ class CrmProject(models.Model):
     crm_ids = fields.One2many('custom.crm.lead.line', 'crm_id', 'CRM ids')
 
     # Project Information Fields (CMIC)
-    u_id = fields.Char(string="vConstruct UID")
+    u_id = fields.Char(string="vconstruct UID")
     cmic_project = fields.Char('CMIC Project Name')
     cmic_project_no = fields.Char('CMIC Project Number')
     opportunity_name = fields.Char('Opportunity Name')
@@ -31,7 +34,7 @@ class CrmProject(models.Model):
     # Other Information fields
     project_name = fields.Char('Project Name')
     sez_unit = fields.Selection([('1', '1'),
-                                 ('2', '2')], string="vConstruct SEZ Unit")
+                                 ('2', '2')], string="vconstruct SEZ Unit")
     action_item = fields.Char('Action Items')
     action_due_date = fields.Char('Action Item Due Date')
     award_date = fields.Date(string='Awarded Date')
@@ -41,9 +44,9 @@ class CrmProject(models.Model):
                                   string="API Data")
 
     # Scope Information Notebook
-    business_unit = fields.Char(string="vConstruct BU")
-    # vc_poc = fields.Char(string="vConstruct POC", required=True)
-    v_poc = fields.Char('vConstruct POC')
+    business_unit = fields.Char(string="vconstruct BU")
+    # vc_poc = fields.Char(string="vconstruct POC", required=True)
+    v_poc = fields.Char('vconstruct POC')
     customer_poc = fields.Selection([('1', '1'),
                                      ('2', '2')], string="Customer POC")
     service = fields.Char('Service Vertical')
@@ -79,6 +82,7 @@ class CrmProject(models.Model):
     project_count = fields.Integer('Lead Count', compute='compute_project_count')
 
     # count the number of project created
+
     def compute_project_count(self):
         self.project_count = self.env['project.project'].search_count([('lead_id', '=', self.id)])
 
@@ -162,7 +166,6 @@ class CrmProject(models.Model):
     def write(self, vals):
         res = super(CrmProject, self).write(vals)
         sow = self.order_line.filtered(lambda rec: rec.stage == 'award' and not rec.order_id)
-        sow2 = self.order_line.filtered(lambda sup: sup.stage != 'award')
         if sow and not self.order_ids:
             order_id = self.env['sale.order'].create(
                 {'partner_id': self.partner_id.id,

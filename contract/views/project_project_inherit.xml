@@ -20,6 +20,13 @@
                         <span class="o_stat_text">Project</span>
                     </div>
                 </button>
+                <button name="view_count" type="object" class="oe_stat_button" icon="fa-clock-o"
+                        attrs="{'invisible': [('is_parent','=',False)]}">
+                    <div class="o_stat_info">
+                        <field name="time_count" class="o_stat_value"/>
+                        <span class="o_stat_text">Recorded</span>
+                    </div>
+                </button>
             </xpath>
         </field>
     </record>

@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 contract.project,contract.project,model_contract_project,,1,1,1,1
 custom.crm.lead.line,custom.crm.lead.line,model_custom_crm_lead_line,,1,1,1,1
-
 contract.amount,contract.amount,model_contract_amount,,1,1,1,1
 contract.alternate,contract.alternate,model_contract_alternate,,1,1,1,1
 contract.rates,contract.rates,model_contract_rates,,1,1,1,1
@@ -22,6 +21,7 @@ customer.unit.line,customer_unit_line,model_customer_unit_line,,1,1,1,1
 sub.contractors.line,sub_contractors_line,model_sub_contractors_line,,1,1,1,1
 manual.leads,manual_leads,model_manual_leads,,1,1,1,1
 manual.api.wizards,manual_api_wizards,model_manual_api_wizards,,1,1,1,1
+customer.sub.group,customer_sub_group,model_customer_sub_group,,1,1,1,1
 
 
 

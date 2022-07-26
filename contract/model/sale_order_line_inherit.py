@@ -29,8 +29,10 @@ class SaleOrderInherit(models.Model):
 
 
 class SaleOrderLineInherit(models.Model):
-    _inherit = 'sale.order.line'
+    _name = 'sale.order.line'
+    _inherit = ['sale.order.line', 'mail.thread', 'mail.activity.mixin', 'portal.mixin', 'utm.mixin']
 
+    delivered_time = fields.Float('Delivered Time', related='project_id.time_count', readonly=False)
     lead_id = fields.Many2one('crm.lead')
     stage = fields.Selection(string='Stage', selection=[('lost', 'Lost'), ('award', 'Awarded'), ('expired', 'Expired'),
                                                         ('hold', 'Hold')], default='lost', required=True)
@@ -42,7 +44,7 @@ class SaleOrderLineInherit(models.Model):
     confirm_type = fields.Char(string="Confirm Contract Type")
 
     parent_opp = fields.Char('Parent Opportunity')
-    v_poc = fields.Char('vConstruct POC')
+    v_poc = fields.Char('vconstruct POC')
     service = fields.Char('Service Vertical')
     conf_cont_val = fields.Char(string="Confirm Contract Value")
     customer_poc = fields.Selection([('1', '1'),
@@ -53,7 +55,7 @@ class SaleOrderLineInherit(models.Model):
     work_req = fields.Char('Work Request')
     unique_key = fields.Char('Unique Key')
     comp = fields.Char('Component')
-    business_unit = fields.Char('vConstruct BU')
+    business_unit = fields.Char('vconstruct BU')
     awarded_date = fields.Date('Awarded Date')
     start_date = fields.Date(string="Estimated Start Date")
     end_date = fields.Date(string="Estimated End Date")
@@ -74,4 +76,3 @@ class SaleOrderLineInherit(models.Model):
             'target': 'new',
             'context': {'order_id': self.order_id.id}
         }
-
